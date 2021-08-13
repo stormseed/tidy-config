@@ -1,0 +1,48 @@
+{
+  "name": "tidy-config",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && ncc build src/app/tidy-config.ts --out dist",
+    "tidy-config": "node dist/bin/tidy-config.js"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "@types/prompts": "^2.0.14",
+    "@vercel/ncc": "^0.29.0",
+    "chalk": "^4.1.1",
+    "deepmerge": "^4.2.2",
+    "js-yaml": "^4.1.0",
+    "object-hash": "^2.2.0",
+    "prettier": "^2.3.2",
+    "prompts": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "rfc6902": "^4.0.2",
+    "typescript": "^4.1.2",
+    "yaml": "^1.10.2",
+    "yaml-diff-patch": "*",
+    "yargs": "^17.0.1",
+    "@types/yaml": "^1.9.7",
+    "@types/yargs": "^17.0.2",
+    "@types/prettier": "^2.3.2",
+    "@types/object-hash": "^2.1.1",
+    "@types/js-yaml": "^4.0.2"
+  },
+  "cleanConfigNO": {
+    "configFolder": "config",
+    "files": [
+      "testfile1.txt",
+      ".prettierrc.json"
+    ],
+    "hash": "8ba245fff850f1e19a0294e9635c133ff837ccaa",
+    "timestamp": 1628105670
+  },
+  "tidyConfig": {
+    "configName": "config",
+    "files": [
+      "testfile1.txt"
+    ],
+    "hideInVSCode": true
+  }
+}
