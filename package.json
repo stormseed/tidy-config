@@ -2,7 +2,6 @@
   "name": "tidy-config",
   "version": "1.0.0-beta.1",
   "description": "A small utility designed to sync a package.yaml file and root configuration files in a separate configuration folder",
-  "main": "src/app/tidy-config.ts",
   "keywords": [
     "clean",
     "conf",
@@ -26,13 +25,17 @@
   "bugs": {
     "url": "https://github.com/stormseed/tidy-config/issues"
   },
-  "scripts": {
-    "build": "rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin && move-file bin/index.js bin/tidy-config.js",
-    "publish": "yarn build && npm publish",
-    "tidy-config": "build && node bin/tidy-config.js"
-  },
   "bin": {
     "tidy-config": "bin/tidy-config.js"
+  },
+  "files": [
+    "/bin",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin && move-file bin/index.js bin/tidy-config.js",
+    "build-and-publish": "yarn build && yarn publish",
+    "tidy-config": "build && node bin/tidy-config.js"
   },
   "devDependencies": {
     "@types/node": "^12.0.0",

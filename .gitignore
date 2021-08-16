@@ -10,8 +10,10 @@
 
 # testing
 /coverage
+/tmp
 
 # production
+/bin
 /dist
 
 # misc

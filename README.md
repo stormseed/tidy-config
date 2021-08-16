@@ -28,18 +28,15 @@ If changes are detected in both `package.json` and the YAML file, then by defaul
 tidy-config --sync
 ```
 
-
-### Command options
+### Command-line options
 
 | Option | Description |
 | --- | --- |
 | `--init` | Sets up some initial settings in your `package.json` file
-| `--move` | Move any files listed in package.json in the setting cleanConfig.files setting from the project root folder into your configuration folder, leaving behind a symlink
+| `--move` | Move any files listed in `package.json` in the setting `tidyConfig.files` setting from the project root folder into your configuration folder, leaving behind a symlink
 | `--vscode` | Update the workspace settings for Visual Studio Code to ignore any symlinked files that now reside in the configuration folder
 | `--restore` | Restore any configuration files that were moved from the root folder
 | `--sync` | Sync the settings between the root `package.json` and the `package.yaml` file located in the configuration folder
-| `--force` | When performing a package.json sync, force wither the root package.json file or the package.yaml in the configuration folder to be considered the master
+| `--force` | When performing a `package.json` sync, force wither the root `package.json` file (`--force=json`) or the `package.yaml` (`--force=yaml`) in the configuration folder to be considered the master
 | `--debug` | Show tool debugging messages
 | `--quiet` | Hide output - good for automated usage
-
-
