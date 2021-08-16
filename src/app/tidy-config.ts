@@ -1,5 +1,3 @@
-#!
-
 import prompts, { Choice } from 'prompts'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
@@ -8,7 +6,7 @@ import { ConfigFunctions } from '../lib/ConfigFunctions'
 import { PackageFileFunctions } from '../lib/PackageFileFunctions'
 import { VSCodeSettingsFunctions } from '../lib/VSCodeSettingsFunctions'
 import { InitFunctions } from '../lib/InitFunctions'
-import output from '../lib/output'
+import output from '../lib/OutputFunctions'
 import { InitOptionsType } from '../lib/SharedTypesAndVars'
 
 const parser = yargs(hideBin(process.argv))

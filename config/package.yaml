@@ -1,0 +1,33 @@
+name: clean-config
+version: 0.0.1
+main: index.js
+license: MIT
+scripts:
+  clean-config: node dist/bin/clean-config.js
+devDependencies:
+  # this is a sample comment
+  "@types/node": ^12.0.0
+  "@types/prompts": ^2.0.14
+  chalk: ^4.1.1 # this is a comment about chalk
+  prettier: ^2.3.2
+  typescript: ^4.1.2
+  yaml-diff-patch: ^1.0.2
+  "@types/yaml": ^1.9.7
+  "@types/yargs": ^17.0.2
+  "@types/prettier": ^2.3.2
+  "@types/object-hash": ^2.1.1
+  "@types/js-yaml": ^4.0.2
+cleanConfig:
+  configFolder: config
+  files:
+    - testfile1.txt
+    - .prettierrc.json
+  hash: 8ba245fff850f1e19a0294e9635c133ff837ccaa
+  timestamp: 1628105670
+dependencies:
+  object-hash: ^2.2.0
+  prompts: ^2.4.1
+  md5-file: ^5.0.0
+  yaml: ^1.10.2
+  yargs: ^17.0.1
+  js-yaml: ^4.1.0
