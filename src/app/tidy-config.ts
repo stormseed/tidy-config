@@ -16,6 +16,12 @@ const parser = yargs(hideBin(process.argv))
     type: 'boolean',
     description: 'Sets up some initial settings in your package.json file',
   })
+  .option('hydrate', {
+    alias: 'h',
+    type: 'boolean',
+    description:
+      'Attempts to populate package.json and the root folder with settings and files that are located in a configuration folder for the first time.',
+  })
   .option('move', {
     alias: 'm',
     type: 'boolean',
@@ -71,34 +77,37 @@ const run = async () => {
   if (argv.sync) {
     let result = 'both'
     if (argv.force && argv.force === 'json') {
-      result = 'json'
+      // result = 'json'
+      await packageFileFunctions.doSync('json')
     } else if (argv.force && argv.force === 'yaml') {
-      result = 'readable'
+      // result = 'readable'
+      await packageFileFunctions.doSync('readable')
     } else {
       result = await packageFileFunctions.determineMasterFile()
+      await packageFileFunctions.doSync()
     }
-    console.log('Masterfile = ', result)
-    switch (result) {
-      case 'json': {
-        await packageFileFunctions.mergePackageJsonToYaml()
-        break
-      }
-      case 'readable': {
-        await packageFileFunctions.overwritePackageJsonFromYaml()
-        break
-      }
-      case 'equal': {
-        console.log('The package files have the same data.')
-        break
-      }
-      case 'both': {
-        console.log(
-          'Both files have been altered.',
-          'A merge likely cannot be done without losing data.',
-          'You can override this by using the --forceJson or --forceReadable flags when running this command again.'
-        )
-      }
-    }
+    // console.log('Masterfile = ', result)
+    // switch (result) {
+    //   case 'json': {
+    //     await packageFileFunctions.mergePackageJsonToYaml()
+    //     break
+    //   }
+    //   case 'readable': {
+    //     await packageFileFunctions.overwritePackageJsonFromYaml()
+    //     break
+    //   }
+    //   case 'equal': {
+    //     console.log('The package files have the same data.')
+    //     break
+    //   }
+    //   case 'both': {
+    //     console.log(
+    //       'Both files have been altered.',
+    //       'A merge likely cannot be done without losing data.',
+    //       'You can override this by using the --forceJson or --forceReadable flags when running this command again.'
+    //     )
+    //   }
+    // }
   } else if (argv.restore) {
     console.log('Restoring...')
     await configFunctions.fullRestoreFilesFromConfigFolder()
@@ -111,6 +120,8 @@ const run = async () => {
       )
     }
     // TODO: add items to VSCode if needed
+  } else if (argv.hydrate) {
+    await initFunctions.doHydrate()
   } else if (argv.init) {
     const realInvalidPathChars = new RegExp(/[<>:"\/\\|?*\x00-\x1F]/)
     const rawListOfRootFiles = await initFunctions.getListOfFilesInRoot()

@@ -16,7 +16,10 @@ export class ConfigFunctions {
     this.pathFunctions.setProjectRootPath(process.cwd())
   }
 
-  async moveListOfFiles(fileList: ListOfFileNames, options?: { restore: boolean }) {
+  async moveListOfFiles(
+    fileList: ListOfFileNames,
+    options?: { restore?: boolean; hydrate?: boolean }
+  ) {
     try {
       await this.pathFunctions.configFolderExistsOrCreate()
     } catch (err) {
@@ -41,6 +44,15 @@ export class ConfigFunctions {
             await this.linkExists(pathToFileInRootDir)
           )
         }
+      } else if (options?.hydrate) {
+        let pathToFileInConfigDir = this.pathFunctions.getAbsolutePath(configAbsolutePath, fileName)
+        if (
+          !(await this.linkExists(pathToFileInRootDir)) &&
+          (await this.fileExistsAndNotALink(pathToFileInConfigDir))
+        ) {
+          output.info(`Creating root symlink for ${pathToFileInConfigDir}`)
+          await this.createRelativeSymlink(pathToFileInRootDir, pathToFileInConfigDir)
+        }
       } else {
         if (await this.fileExistsAndNotALink(pathToFileInRootDir)) {
           output.info(`Moving file ${fileName}`)
@@ -48,6 +60,19 @@ export class ConfigFunctions {
         }
       }
     }
+  }
+
+  async createRelativeSymlink(
+    originalFilePath: AbsolutePath,
+    newPath: AbsolutePath
+  ): Promise<void> {
+    return fsPromises.symlink(
+      path.join(
+        this.pathFunctions.getRelativePathFromAbsoluteFilePaths(originalFilePath, newPath),
+        path.basename(originalFilePath)
+      ),
+      originalFilePath
+    )
   }
 
   async fileExistsAndNotALink(filePath: AbsolutePath): Promise<boolean> {
@@ -88,13 +113,14 @@ export class ConfigFunctions {
       ),
       target: originalFilePath,
     })
-    await fsPromises.symlink(
-      path.join(
-        this.pathFunctions.getRelativePathFromAbsoluteFilePaths(originalFilePath, newPath),
-        path.basename(originalFilePath)
-      ),
-      originalFilePath
-    )
+    // await fsPromises.symlink(
+    //   path.join(
+    //     this.pathFunctions.getRelativePathFromAbsoluteFilePaths(originalFilePath, newPath),
+    //     path.basename(originalFilePath)
+    //   ),
+    //   originalFilePath
+    // )
+    await this.createRelativeSymlink(originalFilePath, newPath)
     return
   }
 
@@ -127,6 +153,16 @@ export class ConfigFunctions {
     try {
       const listOfPackages = await this.packageFileFunctions.getListOfFilesFromPackage()
       await this.moveListOfFiles(listOfPackages, { restore: true })
+    } catch (err) {
+      output.error(err)
+      return err
+    }
+  }
+
+  async hydrateSymlinksFromConfigFolder(): Promise<void> {
+    try {
+      const listOfPackages = await this.packageFileFunctions.getListOfFilesFromPackage()
+      await this.moveListOfFiles(listOfPackages, { hydrate: true })
     } catch (err) {
       output.error(err)
       return err
