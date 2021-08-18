@@ -90,12 +90,16 @@ export class PackageObjectFunctions {
   }
 
   removeHashFromPackageObject(packageObject: PackageObjectType): PackageObjectType {
-    delete packageObject[PACKAGE_JSON_CONFIG_NAME][this.packageJsonHashName]
+    if (packageObject[PACKAGE_JSON_CONFIG_NAME]?.[this.packageJsonHashName]) {
+      delete packageObject[PACKAGE_JSON_CONFIG_NAME][this.packageJsonHashName]
+    }
     return packageObject
   }
 
   removeTimestampFromPackageObject(packageObject: PackageObjectType): PackageObjectType {
-    delete packageObject[PACKAGE_JSON_CONFIG_NAME][this.packageJsonTimestampName]
+    if (packageObject[PACKAGE_JSON_CONFIG_NAME]?.[this.packageJsonTimestampName]) {
+      delete packageObject[PACKAGE_JSON_CONFIG_NAME][this.packageJsonTimestampName]
+    }
     return packageObject
   }
 

@@ -207,4 +207,32 @@ export class PackageFileFunctions {
       return 'json'
     }
   }
+
+  async doSync(masterFile?: PackageObjectVariationType): Promise<void> {
+    if (!masterFile) {
+      masterFile = await this.determineMasterFile()
+    }
+    switch (masterFile) {
+      case 'json': {
+        await this.mergePackageJsonToYaml()
+        break
+      }
+      case 'readable': {
+        await this.overwritePackageJsonFromYaml()
+        break
+      }
+      case 'equal': {
+        output.log('The package files have the same data.')
+        break
+      }
+      case 'both': {
+        output.error(
+          'Both files have been altered.',
+          'A merge likely cannot be done without losing data.',
+          'You can override this by using the --force=json or --force=yaml flags when running this command again.'
+        )
+      }
+    }
+    return
+  }
 }

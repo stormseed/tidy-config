@@ -1,6 +1,37 @@
 {
   "name": "tidy-config",
   "version": "1.0.0-beta.1",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin && move-file bin/index.js bin/tidy-config.js",
+    "build-and-publish": "yarn build && yarn publish",
+    "dev": "tsc --project tsconfig.dev.json --watch",
+    "tidy-config": "build && node bin/tidy-config.js",
+    "tidy-config-test": "node tmp/app/tidy-config.js"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "@types/prompts": "^2.0.14",
+    "chalk": "^4.1.1",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5",
+    "yaml-diff-patch": "*",
+    "@types/yaml": "^1.9.7",
+    "@types/yargs": "^17.0.2",
+    "@types/prettier": "^2.3.2",
+    "@types/object-hash": "^2.1.1",
+    "@types/js-yaml": "^4.0.2",
+    "@vercel/ncc": "^0.29.1",
+    "deepmerge": "^4.2.2",
+    "js-yaml": "^4.1.0",
+    "move-file-cli": "^3.0.0",
+    "object-hash": "^2.2.0",
+    "prompts": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "rfc6902": "^4.0.2",
+    "yaml": "^1.10.2",
+    "yargs": "^17.1.1"
+  },
   "description": "A small utility designed to sync a package.yaml file and root configuration files in a separate configuration folder",
   "keywords": [
     "clean",
@@ -15,7 +46,6 @@
     "sync",
     "yaml"
   ],
-  "license": "MIT",
   "author": "Chris Benjamin <cbenjamin@stormseed.com>",
   "homepage": "https://github.com/stormseed/tidy-config",
   "repository": {
@@ -32,37 +62,11 @@
     "/bin",
     "README.md"
   ],
-  "scripts": {
-    "build": "rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin && move-file bin/index.js bin/tidy-config.js",
-    "build-and-publish": "yarn build && yarn publish",
-    "tidy-config": "build && node bin/tidy-config.js"
-  },
-  "devDependencies": {
-    "@types/node": "^12.0.0",
-    "@types/prompts": "^2.0.14",
-    "@vercel/ncc": "^0.29.1",
-    "chalk": "^4.1.1",
-    "deepmerge": "^4.2.2",
-    "js-yaml": "^4.1.0",
-    "move-file-cli": "^3.0.0",
-    "object-hash": "^2.2.0",
-    "prettier": "^2.3.2",
-    "prompts": "^2.4.1",
-    "rimraf": "^3.0.2",
-    "rfc6902": "^4.0.2",
-    "typescript": "^4.3.5",
-    "yaml": "^1.10.2",
-    "yaml-diff-patch": "*",
-    "yargs": "^17.1.1",
-    "@types/yaml": "^1.9.7",
-    "@types/yargs": "^17.0.2",
-    "@types/prettier": "^2.3.2",
-    "@types/object-hash": "^2.1.1",
-    "@types/js-yaml": "^4.0.2"
-  },
   "tidyConfig": {
     "configName": "config",
     "files": [],
-    "hideInVSCode": true
+    "hideInVSCode": true,
+    "hash": "198820460a5b172f9b87568f5cfe11c355a3a367",
+    "timestamp": 1629323135
   }
 }

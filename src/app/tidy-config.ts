@@ -86,28 +86,6 @@ const run = async () => {
       result = await packageFileFunctions.determineMasterFile()
       await packageFileFunctions.doSync()
     }
-    // console.log('Masterfile = ', result)
-    // switch (result) {
-    //   case 'json': {
-    //     await packageFileFunctions.mergePackageJsonToYaml()
-    //     break
-    //   }
-    //   case 'readable': {
-    //     await packageFileFunctions.overwritePackageJsonFromYaml()
-    //     break
-    //   }
-    //   case 'equal': {
-    //     console.log('The package files have the same data.')
-    //     break
-    //   }
-    //   case 'both': {
-    //     console.log(
-    //       'Both files have been altered.',
-    //       'A merge likely cannot be done without losing data.',
-    //       'You can override this by using the --forceJson or --forceReadable flags when running this command again.'
-    //     )
-    //   }
-    // }
   } else if (argv.restore) {
     console.log('Restoring...')
     await configFunctions.fullRestoreFilesFromConfigFolder()
