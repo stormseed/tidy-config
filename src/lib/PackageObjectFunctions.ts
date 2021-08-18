@@ -10,7 +10,6 @@ import {
 } from './SharedTypesAndVars'
 
 export class PackageObjectFunctions {
-  // PACKAGE_JSON_CONFIG_NAME: string = 'cleanConfig'
   packageJsonTimestampName: string = 'timestamp'
   packageJsonHashName: string = 'hash'
   jsonPackageObject: PackageObjectType = {}

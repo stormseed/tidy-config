@@ -26,7 +26,7 @@ const parser = yargs(hideBin(process.argv))
     alias: 'm',
     type: 'boolean',
     description:
-      'Move any files listed in package.json in the setting cleanConfig.files setting from the project root folder into your configuration folder, leaving behind a symlink.',
+      'Move any files listed in package.json in the setting tidyConfig.files setting from the project root folder into your configuration folder, leaving behind a symlink.',
   })
   .option('restore', {
     alias: 'r',
