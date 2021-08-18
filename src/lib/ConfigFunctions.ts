@@ -8,7 +8,6 @@ import { PackageFileFunctions } from './PackageFileFunctions'
 export class ConfigFunctions {
   projectRootPath: AbsolutePath = ''
   configFolderRelativePath: RelativePath = 'config'
-  // PACKAGE_JSON_CONFIG_NAME: string = 'cleanConfig'
   pathFunctions: PathFunctions = new PathFunctions()
   packageFileFunctions: PackageFileFunctions = new PackageFileFunctions()
 

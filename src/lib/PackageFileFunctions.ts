@@ -22,13 +22,8 @@ import { PrettifyFunctions } from './PrettifyFunctions'
 export class PackageFileFunctions {
   packageJsonFileName: FileName = 'package.json'
   packageYamlFileName: FileName = 'package.yaml'
-  // projectRootPath: AbsolutePath = ''
-  // configFolderRelativePath: RelativePath = 'config'
-  // PACKAGE_JSON_CONFIG_NAME: string = 'cleanConfig'
   absolutePackageJsonPath: AbsolutePath = ''
   absolutePackageYamlPath: AbsolutePath = ''
-  // packageJsonTimestampName: string = 'timestamp'
-  // packageJsonHashName: string = 'hash'
   pathFunctions: PathFunctions = new PathFunctions()
   packObjFunc: PackageObjectFunctions = new PackageObjectFunctions()
   prettifyFunctions: PrettifyFunctions = new PrettifyFunctions()

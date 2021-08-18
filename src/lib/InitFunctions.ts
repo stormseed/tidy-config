@@ -28,7 +28,7 @@ export class InitFunctions {
   packageFileFunctions: PackageFileFunctions = new PackageFileFunctions()
   vsCodeFunctions: VSCodeSettingsFunctions = new VSCodeSettingsFunctions()
   configFunctions: ConfigFunctions = new ConfigFunctions()
-  postInstallScriptCommand = 'clean-config --sync --force=json'
+  postInstallScriptCommand = 'tidy-config --sync --force=json'
 
   constructor() {
     this.pathFunctions.setProjectRootPath(process.cwd())

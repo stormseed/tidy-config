@@ -6,6 +6,7 @@
     "build": "rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin && move-file bin/index.js bin/tidy-config.js",
     "build-and-publish": "yarn build && yarn publish",
     "dev": "tsc --project tsconfig.dev.json --watch",
+    "postinstall": "node bin/tidy-config --sync --force=json",
     "tidy-config": "build && node bin/tidy-config.js",
     "tidy-config-test": "node tmp/app/tidy-config.js"
   },
@@ -64,9 +65,13 @@
   ],
   "tidyConfig": {
     "configName": "config",
-    "files": [],
+    "files": [
+      ".prettierrc.json",
+      "tsconfig.json",
+      "tsconfig.dev.json"
+    ],
     "hideInVSCode": true,
-    "hash": "198820460a5b172f9b87568f5cfe11c355a3a367",
-    "timestamp": 1629323135
+    "hash": "b133e988a3d6574947da73b3a11c884f75ed9e0e",
+    "timestamp": 1629324490
   }
 }
