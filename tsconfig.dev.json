@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
    "target": "ES6",
-    // "target": "ES2018",
-    "lib": [
-//      "dom",
-//      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -14,8 +9,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-   "module": "commonjs",
-    // "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": false,
     "resolveJsonModule": true,
