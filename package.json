@@ -2,13 +2,46 @@
   "name": "tidy-config",
   "version": "1.0.0-beta.1",
   "license": "MIT",
+  "author": "Chris Benjamin <cbenjamin@stormseed.com>",
+  "homepage": "https://github.com/stormseed/tidy-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stormseed/tidy-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stormseed/tidy-config/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "description": "A small utility designed to sync a package.yaml file and root configuration files in a separate configuration folder",
+  "keywords": [
+    "clean",
+    "conf",
+    "config",
+    "configuration",
+    "settings",
+    "organize",
+    "organization",
+    "preferences",
+    "package.json",
+    "sync",
+    "yaml"
+  ],
+  "files": [
+    "/bin",
+    "README.md"
+  ],
+  "bin": {
+    "tidy-config": "bin/tidy-config.js"
+  },
   "scripts": {
     "build": "rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin && move-file bin/index.js bin/tidy-config.js",
     "build-and-publish": "yarn build && yarn publish",
     "dev": "tsc --project tsconfig.dev.json --watch",
-    "postinstall": "node bin/tidy-config --sync --force=json",
     "tidy-config": "build && node bin/tidy-config.js",
-    "tidy-config-test": "node tmp/app/tidy-config.js"
+    "tidy-config-test": "node tmp/app/tidy-config.js",
+    "postinstall": "node bin/tidy-config --sync --force=json"
   },
   "devDependencies": {
     "@types/node": "^12.0.0",
@@ -28,42 +61,12 @@
     "move-file-cli": "^3.0.0",
     "object-hash": "^2.2.0",
     "prompts": "^2.4.1",
-    "release-it": "^14.11.5",
     "rimraf": "^3.0.2",
     "rfc6902": "^4.0.2",
     "yaml": "^1.10.2",
-    "yargs": "^17.1.1"
+    "yargs": "^17.1.1",
+    "release-it": "^14.11.5"
   },
-  "description": "A small utility designed to sync a package.yaml file and root configuration files in a separate configuration folder",
-  "keywords": [
-    "clean",
-    "conf",
-    "config",
-    "configuration",
-    "settings",
-    "organize",
-    "organization",
-    "preferences",
-    "package.json",
-    "sync",
-    "yaml"
-  ],
-  "author": "Chris Benjamin <cbenjamin@stormseed.com>",
-  "homepage": "https://github.com/stormseed/tidy-config",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stormseed/tidy-config.git"
-  },
-  "bugs": {
-    "url": "https://github.com/stormseed/tidy-config/issues"
-  },
-  "bin": {
-    "tidy-config": "bin/tidy-config.js"
-  },
-  "files": [
-    "/bin",
-    "README.md"
-  ],
   "tidyConfig": {
     "configName": "config",
     "files": [
@@ -73,7 +76,7 @@
       "tsconfig.dev.json"
     ],
     "hideInVSCode": true,
-    "hash": "6adbc3fa6d53408e7ea78b4a6a90f143f6868183",
-    "timestamp": 1629390371
+    "hash": "9dcb90fbc60ddaf179d43fb8e0714a9b993a4fcb",
+    "timestamp": 1629467899
   }
 }

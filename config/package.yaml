@@ -1,6 +1,40 @@
 name: tidy-config
 version: 1.0.0-beta.1
+
+# meta information about the repository, where to file bugs, etc.
 license: MIT
+author: Chris Benjamin <cbenjamin@stormseed.com>
+homepage: https://github.com/stormseed/tidy-config
+repository:
+  type: git
+  url: https://github.com/stormseed/tidy-config.git
+bugs:
+  url: https://github.com/stormseed/tidy-config/issues
+publishConfig:
+  registry: https://registry.npmjs.org/
+description: A small utility designed to sync a package.yaml file and root
+  configuration files in a separate configuration folder
+keywords:
+  - clean
+  - conf
+  - config
+  - configuration
+  - settings
+  - organize
+  - organization
+  - preferences
+  - package.json
+  - sync
+  - yaml
+
+# files that we are including in the published NPM package
+files:
+  - /bin
+  - README.md
+
+# executable commands
+bin:
+  tidy-config: bin/tidy-config.js
 scripts:
   build: rimraf bin && ncc build src/app/tidy-config.ts --minify --out bin &&
     move-file bin/index.js bin/tidy-config.js
@@ -9,6 +43,8 @@ scripts:
   tidy-config: build && node bin/tidy-config.js
   tidy-config-test: node tmp/app/tidy-config.js
   postinstall: node bin/tidy-config --sync --force=json
+
+# package dependencies
 devDependencies:
   # this is a sample comment
   "@types/node": ^12.0.0
@@ -33,32 +69,7 @@ devDependencies:
   yaml: ^1.10.2
   yargs: ^17.1.1
   release-it: ^14.11.5
-description: A small utility designed to sync a package.yaml file and root
-  configuration files in a separate configuration folder
-keywords:
-  - clean
-  - conf
-  - config
-  - configuration
-  - settings
-  - organize
-  - organization
-  - preferences
-  - package.json
-  - sync
-  - yaml
-author: Chris Benjamin <cbenjamin@stormseed.com>
-homepage: https://github.com/stormseed/tidy-config
-repository:
-  type: git
-  url: https://github.com/stormseed/tidy-config.git
-bugs:
-  url: https://github.com/stormseed/tidy-config/issues
-bin:
-  tidy-config: bin/tidy-config.js
-files:
-  - /bin
-  - README.md
+
 tidyConfig:
   configName: config
   files:
@@ -67,5 +78,5 @@ tidyConfig:
     - tsconfig.json
     - tsconfig.dev.json
   hideInVSCode: true
-  hash: 6adbc3fa6d53408e7ea78b4a6a90f143f6868183
-  timestamp: 1629390371
+  hash: 9dcb90fbc60ddaf179d43fb8e0714a9b993a4fcb
+  timestamp: 1629467899
