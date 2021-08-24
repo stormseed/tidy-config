@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import prompts, { Choice } from 'prompts'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
